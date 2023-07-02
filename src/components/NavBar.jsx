@@ -5,13 +5,19 @@ function NavBar() {
   return (
     <Navbar bg="light" expand="lg">
       <Navbar.Brand>
-        <NavLink to={"/"}>Fútbol Tacajó</NavLink>
+        <Navbar.Brand>
+          <Link to="/" className="navbar-brand-link">
+            Fútbol Tacajó
+          </Link>
+        </Navbar.Brand>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
           <Nav.Link href="#home">Home</Nav.Link>
+          <NavLink to="/">Home</NavLink>
           <Nav.Link href="#about">About</Nav.Link>
+          <NavLink to="/player-form">Insertar Jugador</NavLink>
           <NavDropdown title="Dropdown" id="basic-nav-dropdown">
             <NavDropdown.Item href="#action/1.1">Action</NavDropdown.Item>
             <NavDropdown.Item href="#action/1.2">
