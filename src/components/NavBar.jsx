@@ -1,24 +1,58 @@
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
-import { Link, NavLink } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 function NavBar() {
+  const location = useLocation();
   return (
-    <Navbar bg="light" expand="lg">
-      <Navbar.Brand>
-        <Navbar.Brand>
-          <Link to="/" className="navbar-brand-link">
-            Fútbol Tacajó
-          </Link>
-        </Navbar.Brand>
+    <Navbar
+      bg="dark"
+      data-bs-theme="dark"
+      expand="lg"
+      className="px-2 rounded-bottom"
+    >
+      <Navbar.Brand
+        as={Link}
+        to="/"
+        className={
+          location.pathname === "/"
+            ? "active navbar-brand-link"
+            : "navbar-brand-link"
+        }
+      >
+        Fútbol Tacajó
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="mr-auto">
-          <Nav.Link href="#home">Home</Nav.Link>
-          <NavLink to="/">Home</NavLink>
-          <NavLink to="/calendar">Calendario</NavLink>
-          <Nav.Link href="#about">About</Nav.Link>
-          <NavLink to="/player-form">Insertar Jugador</NavLink>
+      <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
+        <Nav>
+          <Nav.Link
+            as={Link}
+            to="/"
+            className={location.pathname === "/" ? "active" : ""}
+          >
+            Posiciones
+          </Nav.Link>
+          <Nav.Link
+            as={Link}
+            to="/calendar"
+            className={location.pathname === "/calendar" ? "active" : ""}
+          >
+            Calendario
+          </Nav.Link>
+          <Nav.Link
+            as={Link}
+            to="/player-form"
+            className={location.pathname === "/player-form" ? "active" : ""}
+          >
+            Insertar Jugador
+          </Nav.Link>
+          <Nav.Link
+            as={Link}
+            to="/create-match"
+            className={location.pathname === "/create-match" ? "active" : ""}
+          >
+            Crear Partido
+          </Nav.Link>
+
           <NavDropdown title="Dropdown" id="basic-nav-dropdown">
             <NavDropdown.Item href="#action/1.1">Action</NavDropdown.Item>
             <NavDropdown.Item href="#action/1.2">
