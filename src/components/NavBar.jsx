@@ -16,6 +16,7 @@ function NavBar() {
         <Nav className="mr-auto">
           <Nav.Link href="#home">Home</Nav.Link>
           <NavLink to="/">Home</NavLink>
+          <NavLink to="/calendar">Calendario</NavLink>
           <Nav.Link href="#about">About</Nav.Link>
           <NavLink to="/player-form">Insertar Jugador</NavLink>
           <NavDropdown title="Dropdown" id="basic-nav-dropdown">
