@@ -1,10 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Match({ match }) {
   console.log(match);
   const [homeTeam, setHomeTeam] = useState({});
   const [awayTeam, setAwayTeam] = useState({});
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -31,7 +33,7 @@ function Match({ match }) {
   const formattedTime = date.toLocaleTimeString();
 
   return (
-    <div>
+    <div onClick={() => navigate(`/matches/${match._id}`)}>
       <p>
         {homeTeam.name} vs {awayTeam.name}
       </p>

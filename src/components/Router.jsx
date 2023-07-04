@@ -7,6 +7,7 @@ import PlayerForm from "./PlayerForm";
 import TeamPage from "../pages/TeamPage";
 import MatchesPage from "../pages/MatchesPage";
 import CreateMatch from "./CreateMatch";
+import MatchPage from "../pages/MatchPage";
 
 const Router = () => {
   return (
@@ -16,6 +17,7 @@ const Router = () => {
         <Route path="/" element={<StandingsPage />}></Route>
         <Route path="/team-form" element={<TeamForm />}></Route>
         <Route path="/teams/:id" element={<TeamPage />}></Route>
+        <Route path="/matches/:id" element={<MatchPage />}></Route>
         <Route path="/player-form" element={<PlayerForm />}></Route>
         <Route path="/calendar" element={<MatchesPage />}></Route>
         <Route path="/create-match" element={<CreateMatch />}></Route>
