@@ -1,20 +1,25 @@
 import { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import axios from "axios";
+import { url } from "../utils/backurl";
+import { useNavigate } from "react-router-dom";
 
-function TeamForm() {
+function CreateTeam() {
   const [name, setName] = useState("");
-  const [logo, setLogo] = useState("");
+  const navigate = useNavigate();
+  //const [logo, setLogo] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const response = await axios.post("http://127.0.0.1:5000/teams", {
+      //const response = await axios.post(`${url}/teams`, {
+      await axios.post(`${url}/teams`, {
         name,
-        logo,
+        //logo,
       });
-      console.log(response.data);
+      //console.log(response.data);
+      navigate("/teams-page-admin");
     } catch (error) {
       console.error(error);
     }
@@ -32,14 +37,14 @@ function TeamForm() {
             onChange={(event) => setName(event.target.value)}
           />
         </Form.Group>
-        <Form.Group controlId="formLogo">
+        {/* <Form.Group controlId="formLogo">
           <Form.Label>Logo:</Form.Label>
           <Form.Control
             type="text"
             value={logo}
             onChange={(event) => setLogo(event.target.value)}
           />
-        </Form.Group>
+        </Form.Group> */}
         <Button variant="primary" type="submit">
           Crear
         </Button>
@@ -48,4 +53,4 @@ function TeamForm() {
   );
 }
 
-export default TeamForm;
+export default CreateTeam;

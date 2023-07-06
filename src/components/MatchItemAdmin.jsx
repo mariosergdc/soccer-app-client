@@ -1,16 +1,17 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { url } from "../utils/backurl";
 
-function Match({ match }) {
-  console.log(match);
+function MatchItemAdmin({ match, handleDelete }) {
+  console.log("match en matchitemadmin", match);
   const [homeTeam, setHomeTeam] = useState({});
   const [awayTeam, setAwayTeam] = useState({});
   const navigate = useNavigate();
 
   useEffect(() => {
     axios
-      .get(`http://127.0.0.1:5000/teams/${match.homeTeam}`)
+      .get(`${url}/teams/${match.homeTeam}`)
       .then((response) => {
         setHomeTeam(response.data);
       })
@@ -19,7 +20,7 @@ function Match({ match }) {
       });
 
     axios
-      .get(`http://127.0.0.1:5000/teams/${match.awayTeam}`)
+      .get(`${url}/teams/${match.awayTeam}`)
       .then((response) => {
         setAwayTeam(response.data);
       })
@@ -33,15 +34,17 @@ function Match({ match }) {
   const formattedTime = date.toLocaleTimeString();
 
   return (
-    <div onClick={() => navigate(`/matches/${match._id}`)}>
+    <div className="border border-primary">
       <p>
         {homeTeam.name} vs {awayTeam.name}
       </p>
       <p>Date: {formattedDate}</p>
       <p>Time: {formattedTime}</p>
       <p>Status: {match.status}</p>
+      <button onClick={() => navigate(`/matches/${match._id}`)}>Editar</button>
+      <button onClick={() => handleDelete(match._id)}>Eliminar</button>
     </div>
   );
 }
 
-export default Match;
+export default MatchItemAdmin;

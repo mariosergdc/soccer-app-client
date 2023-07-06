@@ -40,6 +40,31 @@ function NavBar() {
           </Nav.Link>
           <Nav.Link
             as={Link}
+            to="/create-team"
+            className={location.pathname === "/create-team" ? "active" : ""}
+          >
+            Insertar Equipo
+          </Nav.Link>
+          <Nav.Link
+            as={Link}
+            to="/teams-page-admin"
+            className={
+              location.pathname === "/teams-page-admin" ? "active" : ""
+            }
+          >
+            Administrar Equipos
+          </Nav.Link>
+          <Nav.Link
+            as={Link}
+            to="/matches-page-admin"
+            className={
+              location.pathname === "/matches-page-admin" ? "active" : ""
+            }
+          >
+            Administrar Partidos
+          </Nav.Link>
+          <Nav.Link
+            as={Link}
             to="/player-form"
             className={location.pathname === "/player-form" ? "active" : ""}
           >

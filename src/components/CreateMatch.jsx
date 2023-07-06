@@ -89,7 +89,7 @@ function CreateMatch() {
       <Form.Group>
         <Form.Label>Date:</Form.Label>
         <Form.Control
-          type="datetyme-local"
+          type="date"
           name="date"
           value={match.date}
           onChange={handleInputChange}
