@@ -5,7 +5,11 @@ import { url } from "../utils/backurl";
 
 function GoalForm({ matchId, teamId }) {
   const [player, setPlayer] = useState("");
-  const [players, setPlayers] = useState([]);
+  const [players, setPlayers] = useState([]); //jugadores de teamid
+  const [goalType, setGoalType] = useState("standard"); //default value
+
+  console.log("matchid", matchId);
+  console.log("teamid", teamId);
 
   useEffect(() => {
     axios
@@ -22,13 +26,24 @@ function GoalForm({ matchId, teamId }) {
     setPlayer(event.target.value);
   };
 
+  const handleGoalTypeChange = (event) => {
+    setGoalType(event.target.value);
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log({
+      match: matchId,
+      team: teamId,
+      player: player,
+      goalType: goalType, //add goalType to the object
+    });
     axios
       .post(`${url}/goals`, {
-        matchId: matchId,
-        teamId: teamId,
-        playerId: player,
+        match: matchId,
+        team: teamId,
+        player: player,
+        goalType: goalType, //add goalType to the object
       })
       .then((response) => {
         console.log(response.data);
@@ -45,10 +60,23 @@ function GoalForm({ matchId, teamId }) {
         <Form.Control as="select" value={player} onChange={handlePlayerChange}>
           <option value="">Select a player</option>
           {players.map((player) => (
-            <option key={player.id} value={player.id}>
+            <option key={player._id} value={player._id}>
               {player.name}
             </option>
           ))}
+        </Form.Control>
+      </Form.Group>
+
+      <Form.Group>
+        <Form.Label>Goal Type:</Form.Label>
+        <Form.Control
+          as="select"
+          value={goalType}
+          onChange={handleGoalTypeChange}
+        >
+          <option value="standard">Standard</option>
+          <option value="penalty">Penalty</option>
+          <option value="autogoal">Autogoal</option>
         </Form.Control>
       </Form.Group>
 

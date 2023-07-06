@@ -36,7 +36,10 @@ function MatchItemAdmin({ match, handleDelete }) {
   return (
     <div className="border border-primary">
       <p>
-        {homeTeam.name} vs {awayTeam.name}
+        {homeTeam.name}
+        {` `} {match.homeGoals} vs {awayTeam.name}
+        {` `}
+        {match.awayGoals}
       </p>
       <p>Date: {formattedDate}</p>
       <p>Time: {formattedTime}</p>

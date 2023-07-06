@@ -3,16 +3,16 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { url } from "../utils/backurl";
 
-const EditTeam = () => {
+const EditPlayer = () => {
   const { id } = useParams();
   const [name, setName] = useState("");
 
   useEffect(() => {
-    const fetchTeam = async () => {
-      const response = await axios.get(`${url}/teams/${id}`);
+    const fetchPlayer = async () => {
+      const response = await axios.get(`${url}/players/${id}`);
       setName(response.data.name);
     };
-    fetchTeam();
+    fetchPlayer();
   }, [id]);
 
   const handleNameChange = (event) => {
@@ -20,20 +20,20 @@ const EditTeam = () => {
   };
 
   const handleUpdate = async () => {
-    await axios.patch(`${url}/teams/${id}`, { name });
+    await axios.patch(`${url}/players/${id}`, { name });
     // TODO: Navigate back to TeamsPageAdmin
   };
 
   return (
     <div>
-      <h1>Editar Equipo</h1>
+      <h1>Editar Jugador</h1>
       <label>
         Nombre:
         <input type="text" value={name} onChange={handleNameChange} />
       </label>
-      <button onClick={handleUpdate}>Actualizar</button>
+      <button onClick={handleUpdate}>Update</button>
     </div>
   );
 };
 
-export default EditTeam;
+export default EditPlayer;

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { url } from "../utils/backurl";
 
 function TeamPage() {
   const [team, setTeam] = useState(null);
@@ -9,14 +10,12 @@ function TeamPage() {
 
   useEffect(() => {
     async function fetchTeam() {
-      const response = await axios.get(`http://127.0.0.1:5000/teams/${id}`);
+      const response = await axios.get(`${url}/teams/${id}`);
       setTeam(response.data);
     }
 
     async function fetchPlayers() {
-      const response = await axios.get(
-        `http://127.0.0.1:5000/players/teams/${id}`
-      );
+      const response = await axios.get(`${url}/players/teams/${id}`);
       setPlayers(response.data);
     }
 
@@ -33,14 +32,14 @@ function TeamPage() {
       <h1>{team.name}</h1>
       <img src={team.logo} alt={team.name} />
       <h2>Jugadores:</h2>
-      <ul>
-        {players.map((player) => (
-          <li key={player._id}>
-            {player.name} {player.number}
-            {player.position}
-          </li>
-        ))}
-      </ul>
+
+      {players.map((player) => (
+        <div key={player._id}>
+          {player.name} {player.number}
+          {player.position}
+        </div>
+      ))}
+
       <h2>Rendimiento:</h2>
       <ul>
         <li>Victorias: {team.performance.wins}</li>

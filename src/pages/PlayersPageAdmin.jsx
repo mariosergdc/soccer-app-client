@@ -3,20 +3,20 @@ import axios from "axios";
 import { url } from "../utils/backurl";
 import { useNavigate } from "react-router-dom";
 
-const TeamsPageAdmin = () => {
-  const [teams, setTeams] = useState([]);
+const PlayersPageAdmin = () => {
+  const [players, setPlayers] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchTeams = async () => {
-      const response = await axios.get(`${url}/teams`);
-      setTeams(response.data);
+    const fetchPlayers = async () => {
+      const response = await axios.get(`${url}/players`);
+      setPlayers(response.data);
     };
-    fetchTeams();
+    fetchPlayers();
   }, []);
 
   const handleEdit = (id) => {
-    navigate(`/teams/edit/${id}`);
+    navigate(`/players/edit/${id}`);
   };
 
   const handleDelete = async (id) => {
@@ -25,9 +25,9 @@ const TeamsPageAdmin = () => {
     );
     if (confirmDelete) {
       axios
-        .post(`${url}/teams/delete/${id}`)
+        .post(`${url}/players/delete/${id}`)
         .then(() => {
-          setTeams(teams.filter((team) => team._id !== id));
+          setPlayers(players.filter((player) => player._id !== id));
         })
         .catch((error) => {
           console.error(error);
@@ -37,7 +37,7 @@ const TeamsPageAdmin = () => {
 
   return (
     <div>
-      <h1>Equipos</h1>
+      <h1>Jugadores</h1>
       <table>
         <thead>
           <tr>
@@ -47,14 +47,16 @@ const TeamsPageAdmin = () => {
           </tr>
         </thead>
         <tbody>
-          {teams.map((team) => (
-            <tr key={team._id}>
-              <td>{team.name}</td>
+          {players.map((player) => (
+            <tr key={player._id}>
+              <td>{player.name}</td>
               <td>
-                <button onClick={() => handleEdit(team._id)}>Editar</button>
+                <button onClick={() => handleEdit(player._id)}>Editar</button>
               </td>
               <td>
-                <button onClick={() => handleDelete(team._id)}>Eliminar</button>
+                <button onClick={() => handleDelete(player._id)}>
+                  Eliminar
+                </button>
               </td>
             </tr>
           ))}
@@ -64,4 +66,4 @@ const TeamsPageAdmin = () => {
   );
 };
 
-export default TeamsPageAdmin;
+export default PlayersPageAdmin;

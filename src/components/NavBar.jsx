@@ -65,8 +65,17 @@ function NavBar() {
           </Nav.Link>
           <Nav.Link
             as={Link}
-            to="/player-form"
-            className={location.pathname === "/player-form" ? "active" : ""}
+            to="/players-page-admin"
+            className={
+              location.pathname === "/players-page-admin" ? "active" : ""
+            }
+          >
+            Administrar Jugadores
+          </Nav.Link>
+          <Nav.Link
+            as={Link}
+            to="/create-player"
+            className={location.pathname === "/create-player" ? "active" : ""}
           >
             Insertar Jugador
           </Nav.Link>

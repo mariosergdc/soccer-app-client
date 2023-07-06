@@ -2,8 +2,23 @@ import { Link } from "react-router-dom";
 import { Table } from "react-bootstrap";
 
 function StandingsTable({ teams }) {
-  // Ordenar los equipos por puntos
-  teams.sort((a, b) => b.performance.points - a.performance.points);
+  // Calculate games played, goal difference, and points for each team
+  teams.forEach((team) => {
+    team.performance.gamesPlayed =
+      team.performance.wins + team.performance.ties + team.performance.losses;
+    team.performance.goalDifference =
+      team.performance.goalsScored - team.performance.goalsConceded;
+    team.performance.points = team.performance.wins * 3 + team.performance.ties;
+  });
+
+  // Sort the teams by points and goal difference in case of a tie
+  teams.sort((a, b) => {
+    if (a.performance.points !== b.performance.points) {
+      return b.performance.points - a.performance.points;
+    } else {
+      return b.performance.goalDifference - a.performance.goalDifference;
+    }
+  });
 
   return (
     <Table striped bordered hover>
@@ -28,16 +43,14 @@ function StandingsTable({ teams }) {
             <td>
               <Link to={`/teams/${team._id}`}>{team.name}</Link>
             </td>
-            <td>{team.performance?.played}</td>
-            <td>{team.performance?.wins}</td>
-            <td>{team.performance?.ties}</td>
-            <td>{team.performance?.losses}</td>
-            <td>{team.performance?.goalsScored}</td>
-            <td>{team.performance?.goalsConceded}</td>
-            <td>
-              {team.performance?.goalsScored - team.performance?.goalsConceded}
-            </td>
-            <td>{team.performance?.points}</td>
+            <td>{team.performance.gamesPlayed}</td>
+            <td>{team.performance.wins}</td>
+            <td>{team.performance.ties}</td>
+            <td>{team.performance.losses}</td>
+            <td>{team.performance.goalsScored}</td>
+            <td>{team.performance.goalsConceded}</td>
+            <td>{team.performance.goalDifference}</td>
+            <td>{team.performance.points}</td>
           </tr>
         ))}
       </tbody>

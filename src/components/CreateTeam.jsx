@@ -30,7 +30,7 @@ function CreateTeam() {
       <h1>Crear Equipo</h1>
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="formName">
-          <Form.Label>Name:</Form.Label>
+          <Form.Label>Nombre:</Form.Label>
           <Form.Control
             type="text"
             value={name}

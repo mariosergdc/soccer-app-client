@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { url } from "../utils/backurl";
+import AddGoalModal from "../components/AddGoalModal";
 
 const EditMatch = () => {
   const [matchData, setMatchData] = useState(null);
@@ -129,7 +130,11 @@ const EditMatch = () => {
         <div>{homeTeam.name}</div>
         <label>Home Goals:</label>
         <div>{homeGoals}</div>
-        <button>Add Goal</button>
+        <AddGoalModal
+          matchId={matchData._id}
+          teamId={homeTeam._id}
+          teamName={homeTeam.name}
+        />
       </div>
 
       <div className="border border-danger">
@@ -137,7 +142,11 @@ const EditMatch = () => {
         <div>{awayTeam.name}</div>
         <label>Away Goals:</label>
         <div>{awayGoals}</div>
-        <button>Add Goal</button>
+        <AddGoalModal
+          matchId={matchData._id}
+          teamId={awayTeam._id}
+          teamName={awayTeam.name}
+        />
       </div>
 
       <div>
