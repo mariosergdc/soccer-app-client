@@ -19,7 +19,11 @@ const AddGoalModal = ({ matchId, teamId, teamName }) => {
           <Modal.Title>Add Goal for {teamName}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <GoalForm matchId={matchId} teamId={teamId} />
+          <GoalForm
+            matchId={matchId}
+            teamId={teamId}
+            handleClose={handleClose}
+          />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>

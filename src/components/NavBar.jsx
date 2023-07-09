@@ -1,8 +1,12 @@
-import { Navbar, Nav, NavDropdown } from "react-bootstrap";
+import { useContext } from "react";
+import { Navbar, Nav } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
+import AuthContext from "../context/AuthContext";
 
 function NavBar() {
   const location = useLocation();
+  const { loggedIn } = useContext(AuthContext);
+
   return (
     <Navbar
       bg="dark"
@@ -38,66 +42,69 @@ function NavBar() {
           >
             Calendario
           </Nav.Link>
+          {loggedIn && (
+            <>
+              <Nav.Link
+                as={Link}
+                to="/create-team"
+                className={location.pathname === "/create-team" ? "active" : ""}
+              >
+                Insertar Equipo
+              </Nav.Link>
+              <Nav.Link
+                as={Link}
+                to="/teams-page-admin"
+                className={
+                  location.pathname === "/teams-page-admin" ? "active" : ""
+                }
+              >
+                Administrar Equipos
+              </Nav.Link>
+              <Nav.Link
+                as={Link}
+                to="/matches-page-admin"
+                className={
+                  location.pathname === "/matches-page-admin" ? "active" : ""
+                }
+              >
+                Administrar Partidos
+              </Nav.Link>
+              <Nav.Link
+                as={Link}
+                to="/players-page-admin"
+                className={
+                  location.pathname === "/players-page-admin" ? "active" : ""
+                }
+              >
+                Administrar Jugadores
+              </Nav.Link>
+              <Nav.Link
+                as={Link}
+                to="/create-player"
+                className={
+                  location.pathname === "/create-player" ? "active" : ""
+                }
+              >
+                Insertar Jugador
+              </Nav.Link>
+              <Nav.Link
+                as={Link}
+                to="/create-match"
+                className={
+                  location.pathname === "/create-match" ? "active" : ""
+                }
+              >
+                Crear Partido
+              </Nav.Link>
+            </>
+          )}
           <Nav.Link
             as={Link}
-            to="/create-team"
-            className={location.pathname === "/create-team" ? "active" : ""}
+            to="/login"
+            className={location.pathname === "/login" ? "active" : ""}
           >
-            Insertar Equipo
+            Login
           </Nav.Link>
-          <Nav.Link
-            as={Link}
-            to="/teams-page-admin"
-            className={
-              location.pathname === "/teams-page-admin" ? "active" : ""
-            }
-          >
-            Administrar Equipos
-          </Nav.Link>
-          <Nav.Link
-            as={Link}
-            to="/matches-page-admin"
-            className={
-              location.pathname === "/matches-page-admin" ? "active" : ""
-            }
-          >
-            Administrar Partidos
-          </Nav.Link>
-          <Nav.Link
-            as={Link}
-            to="/players-page-admin"
-            className={
-              location.pathname === "/players-page-admin" ? "active" : ""
-            }
-          >
-            Administrar Jugadores
-          </Nav.Link>
-          <Nav.Link
-            as={Link}
-            to="/create-player"
-            className={location.pathname === "/create-player" ? "active" : ""}
-          >
-            Insertar Jugador
-          </Nav.Link>
-          <Nav.Link
-            as={Link}
-            to="/create-match"
-            className={location.pathname === "/create-match" ? "active" : ""}
-          >
-            Crear Partido
-          </Nav.Link>
-
-          <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-            <NavDropdown.Item href="#action/1.1">Action</NavDropdown.Item>
-            <NavDropdown.Item href="#action/1.2">
-              Another action
-            </NavDropdown.Item>
-            <NavDropdown.Item href="#action/1.3">Something</NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item href="#action/1.4">
-              Separated link
-            </NavDropdown.Item>
-          </NavDropdown>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

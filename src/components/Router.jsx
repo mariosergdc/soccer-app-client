@@ -12,37 +12,97 @@ import EditMatch from "../pages/EditMatch";
 import PlayersPageAdmin from "../pages/PlayersPageAdmin";
 import EditPlayer from "./EditPlayer";
 import CreatePlayer from "./CreatePlayer";
+import Login from "./Login";
+import PrivateRoute from "./PrivateRoute";
 
 const Router = () => {
   return (
     <BrowserRouter>
       <NavBar />
       <Routes>
+        <Route path="/login" element={<Login />}></Route>
         <Route path="/" element={<StandingsPage />}></Route>
         {/*lista de teams se la pasa a standins table */}
-        <Route path="/create-team" element={<CreateTeam />}></Route>
+        <Route
+          path="/create-team"
+          element={
+            <PrivateRoute>
+              <CreateTeam />
+            </PrivateRoute>
+          }
+        ></Route>
         {/* team */}
-        <Route path="/teams/edit/:id" element={<EditTeam />}></Route>
+        <Route
+          path="/teams/edit/:id"
+          element={
+            <PrivateRoute>
+              <EditTeam />
+            </PrivateRoute>
+          }
+        ></Route>
         {/* team */}
-        <Route path="/players/edit/:id" element={<EditPlayer />}></Route>
+        <Route
+          path="/players/edit/:id"
+          element={
+            <PrivateRoute>
+              <EditPlayer />
+            </PrivateRoute>
+          }
+        ></Route>
         {/*player */}
-        <Route path="/teams-page-admin" element={<TeamsPageAdmin />}></Route>
+        <Route
+          path="/teams-page-admin"
+          element={
+            <PrivateRoute>
+              <TeamsPageAdmin />
+            </PrivateRoute>
+          }
+        ></Route>
         {/* team */}
         <Route path="/teams/:id" element={<TeamPage />}></Route>
         {/*team public Show one team from stadistics page */}
-        <Route path="/matches/:id" element={<EditMatch />}></Route>
-        <Route path="/create-player" element={<CreatePlayer />}></Route>
+        <Route
+          path="/matches/:id"
+          element={
+            <PrivateRoute>
+              <EditMatch />
+            </PrivateRoute>
+          }
+        ></Route>
+        <Route
+          path="/create-player"
+          element={
+            <PrivateRoute>
+              <CreatePlayer />
+            </PrivateRoute>
+          }
+        ></Route>
         {/*player */}
         <Route
           path="/matches-page-admin"
-          element={<MatchesPageAdmin />}
+          element={
+            <PrivateRoute>
+              <MatchesPageAdmin />
+            </PrivateRoute>
+          }
         ></Route>
         <Route
           path="/players-page-admin"
-          element={<PlayersPageAdmin />}
+          element={
+            <PrivateRoute>
+              <PlayersPageAdmin />
+            </PrivateRoute>
+          }
         ></Route>
         {/*player */}
-        <Route path="/create-match" element={<CreateMatch />}></Route>
+        <Route
+          path="/create-match"
+          element={
+            <PrivateRoute>
+              <CreateMatch />
+            </PrivateRoute>
+          }
+        ></Route>
         <Route path="*" element={<Error404 />}></Route>
       </Routes>
     </BrowserRouter>

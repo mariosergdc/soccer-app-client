@@ -3,13 +3,10 @@ import { Form, Button } from "react-bootstrap";
 import axios from "axios";
 import { url } from "../utils/backurl";
 
-function GoalForm({ matchId, teamId }) {
+function GoalForm({ matchId, teamId, handleClose }) {
   const [player, setPlayer] = useState("");
   const [players, setPlayers] = useState([]); //jugadores de teamid
   const [goalType, setGoalType] = useState("standard"); //default value
-
-  console.log("matchid", matchId);
-  console.log("teamid", teamId);
 
   useEffect(() => {
     axios
@@ -32,12 +29,7 @@ function GoalForm({ matchId, teamId }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log({
-      match: matchId,
-      team: teamId,
-      player: player,
-      goalType: goalType, //add goalType to the object
-    });
+
     axios
       .post(`${url}/goals`, {
         match: matchId,
@@ -47,6 +39,7 @@ function GoalForm({ matchId, teamId }) {
       })
       .then((response) => {
         console.log(response.data);
+        handleClose();
       })
       .catch((error) => {
         console.log(error);
@@ -75,7 +68,7 @@ function GoalForm({ matchId, teamId }) {
           onChange={handleGoalTypeChange}
         >
           <option value="standard">Standard</option>
-          <option value="penalty">Penalty</option>
+          <option value="penalti">Penalti</option>
           <option value="autogoal">Autogoal</option>
         </Form.Control>
       </Form.Group>
