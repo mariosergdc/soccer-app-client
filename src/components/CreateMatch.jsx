@@ -34,11 +34,9 @@ function CreateMatch() {
     event.preventDefault();
 
     const datetime = new Date(`${match.date}T${match.time}:00`);
-    //const formattedDatetime = datetime.toISOString();
     const matchWithDatetime = {
       homeTeam: match.homeTeam,
       awayTeam: match.awayTeam,
-      //date: formattedDatetime,
       date: datetime,
     };
     axios

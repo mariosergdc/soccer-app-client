@@ -1,11 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Form, Button } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 import { url } from "../utils/backurl";
 
 const CreatePlayer = () => {
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
   const [position, setPosition] = useState("");
@@ -29,12 +29,12 @@ const CreatePlayer = () => {
       team: selectedTeam,
     };
     try {
-      const response = await axios.post(`${url}/players`, playerData);
+      await axios.post(`${url}/players`, playerData);
 
       setName("");
       setNumber("");
       setPosition("");
-      navigate(`/teams/${selectedTeam}`);
+      //navigate(`/teams/${selectedTeam}`);
       setSelectedTeam("");
     } catch (error) {
       console.error(error);

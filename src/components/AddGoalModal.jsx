@@ -16,7 +16,7 @@ const AddGoalModal = ({ matchId, teamId, teamName, fetchMatchData }) => {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Add Goal for {teamName}</Modal.Title>
+          <Modal.Title>Gol de {teamName}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <GoalForm

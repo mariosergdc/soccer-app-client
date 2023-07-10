@@ -38,7 +38,6 @@ function GoalForm({ matchId, teamId, handleClose, fetchMatchData }) {
         goalType: goalType, //add goalType to the object
       })
       .then((response) => {
-        console.log(response.data);
         handleClose();
         fetchMatchData();
       })

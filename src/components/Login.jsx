@@ -20,7 +20,7 @@ const Login = () => {
     try {
       const res = await axios.post(`${url}/users/login`, form);
       /* const res = await axios.post(`${url}/users/login`, form); */
-      console.log(res);
+      //console.log(res);
       const loged = await getLoggedIn();
       console.log(loged ? "true" : "false");
 

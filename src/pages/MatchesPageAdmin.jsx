@@ -39,7 +39,7 @@ function MatchesPageAdmin() {
       <h1>Partidos</h1>
       <Row>
         {matches.map((match) => (
-          <Col xs={12} md={3} key={match._id}>
+          <Col xs={12} sm={6} md={3} key={match._id}>
             <MatchItemAdmin match={match} handleDelete={handleDelete} />
           </Col>
         ))}

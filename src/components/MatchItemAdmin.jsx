@@ -30,17 +30,15 @@ function MatchItemAdmin({ match, handleDelete }) {
   }, [match.homeTeam, match.awayTeam]);
 
   const date = new Date(match.date);
-  const formattedDate = date.toLocaleDateString();
+  const formatedDate = date.toLocaleDateString();
 
   return (
     <div className="match-item">
       <p>
-        {homeTeam.name}
-        {` `} {match.homeGoals} vs {awayTeam.name}
-        {` `}
+        {homeTeam.name} {` `} {match.homeGoals} vs {awayTeam.name} {` `}
         {match.awayGoals}
       </p>
-      <p>Date: {formattedDate}</p>
+      <p>Date: {formatedDate}</p>
       <p>Time: {convertToAmPm(date)}</p>
       <p>Status: {match.status}</p>
       <button onClick={() => navigate(`/matches/${match._id}`)}>Editar</button>
