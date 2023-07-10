@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import MatchItemAdmin from "../components/MatchItemAdmin";
 import { url } from "../utils/backurl";
+import { Col, Row } from "react-bootstrap";
 
 function MatchesPageAdmin() {
   const [matches, setMatches] = useState([]);
@@ -36,13 +37,13 @@ function MatchesPageAdmin() {
   return (
     <div>
       <h1>Partidos</h1>
-      {matches.map((match) => (
-        <MatchItemAdmin
-          key={match._id}
-          match={match}
-          handleDelete={handleDelete}
-        />
-      ))}
+      <Row>
+        {matches.map((match) => (
+          <Col xs={12} md={3} key={match._id}>
+            <MatchItemAdmin match={match} handleDelete={handleDelete} />
+          </Col>
+        ))}
+      </Row>
     </div>
   );
 }

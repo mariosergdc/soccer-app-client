@@ -9,14 +9,30 @@ function TeamPage() {
   const { id } = useParams();
 
   useEffect(() => {
-    async function fetchTeam() {
-      const response = await axios.get(`${url}/teams/${id}`);
-      setTeam(response.data);
-    }
+    const fetchTeam = async () => {
+      try {
+        const response = await axios.get(`${url}/teams/${id}`);
+        if (response.data) {
+          setTeam(response.data);
+        } else {
+          console.log("Equipo no encontrado");
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
     async function fetchPlayers() {
-      const response = await axios.get(`${url}/players/teams/${id}`);
-      setPlayers(response.data);
+      try {
+        const response = await axios.get(`${url}/players/teams/${id}`);
+        if (response.data) {
+          setPlayers(response.data);
+        } else {
+          console.log("Jugadores no encontrados");
+        }
+      } catch (error) {
+        console.error(error);
+      }
     }
 
     fetchTeam();
@@ -30,7 +46,16 @@ function TeamPage() {
   return (
     <div>
       <h1>{team.name}</h1>
-      <img src={team.logo} alt={team.name} />
+      {/* <img src={team.logo} alt={team.name} /> */}
+
+      <h2>Rendimiento:</h2>
+
+      <div>Victorias: {team.performance.wins}</div>
+      <div>Derrotas: {team.performance.losses}</div>
+      <div>Empates: {team.performance.ties}</div>
+      <div>Goles a favor: {team.performance.goalsScored}</div>
+      <div>Goles en contra: {team.performance.goalsConceded}</div>
+
       <h2>Jugadores:</h2>
 
       {players.map((player) => (
@@ -39,15 +64,6 @@ function TeamPage() {
           {player.position}
         </div>
       ))}
-
-      <h2>Rendimiento:</h2>
-      <ul>
-        <li>Victorias: {team.performance.wins}</li>
-        <li>Derrotas: {team.performance.losses}</li>
-        <li>Empates: {team.performance.ties}</li>
-        <li>Goles a favor: {team.performance.goalsScored}</li>
-        <li>Goles en contra: {team.performance.goalsConceded}</li>
-      </ul>
     </div>
   );
 }

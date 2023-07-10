@@ -3,7 +3,7 @@ import { Form, Button } from "react-bootstrap";
 import axios from "axios";
 import { url } from "../utils/backurl";
 
-function GoalForm({ matchId, teamId, handleClose }) {
+function GoalForm({ matchId, teamId, handleClose, fetchMatchData }) {
   const [player, setPlayer] = useState("");
   const [players, setPlayers] = useState([]); //jugadores de teamid
   const [goalType, setGoalType] = useState("standard"); //default value
@@ -40,6 +40,7 @@ function GoalForm({ matchId, teamId, handleClose }) {
       .then((response) => {
         console.log(response.data);
         handleClose();
+        fetchMatchData();
       })
       .catch((error) => {
         console.log(error);

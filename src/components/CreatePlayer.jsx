@@ -30,7 +30,7 @@ const CreatePlayer = () => {
     };
     try {
       const response = await axios.post(`${url}/players`, playerData);
-      console.log(response.data);
+
       setName("");
       setNumber("");
       setPosition("");

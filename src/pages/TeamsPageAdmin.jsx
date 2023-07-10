@@ -2,17 +2,21 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { url } from "../utils/backurl";
 import { useNavigate } from "react-router-dom";
+import { Table } from "react-bootstrap";
 
 const TeamsPageAdmin = () => {
   const [teams, setTeams] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchTeams = async () => {
-      const response = await axios.get(`${url}/teams`);
-      setTeams(response.data);
-    };
-    fetchTeams();
+    axios
+      .get(`${url}/teams`)
+      .then((response) => {
+        setTeams(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }, []);
 
   const handleEdit = (id) => {
@@ -38,7 +42,7 @@ const TeamsPageAdmin = () => {
   return (
     <div>
       <h1>Equipos</h1>
-      <table>
+      <Table striped bordered hover>
         <thead>
           <tr>
             <th>Nombre</th>
@@ -51,15 +55,25 @@ const TeamsPageAdmin = () => {
             <tr key={team._id}>
               <td>{team.name}</td>
               <td>
-                <button onClick={() => handleEdit(team._id)}>Editar</button>
+                <button
+                  className="btn btn-primary"
+                  onClick={() => handleEdit(team._id)}
+                >
+                  Editar
+                </button>
               </td>
               <td>
-                <button onClick={() => handleDelete(team._id)}>Eliminar</button>
+                <button
+                  className="btn btn-danger"
+                  onClick={() => handleDelete(team._id)}
+                >
+                  Eliminar
+                </button>
               </td>
             </tr>
           ))}
         </tbody>
-      </table>
+      </Table>
     </div>
   );
 };

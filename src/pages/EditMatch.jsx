@@ -3,6 +3,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { url } from "../utils/backurl";
 import AddGoalModal from "../components/AddGoalModal";
+import convertToAmPm from "../utils/convertToAmPm";
 
 const EditMatch = () => {
   const [matchData, setMatchData] = useState(null);
@@ -11,29 +12,30 @@ const EditMatch = () => {
   const [status, setStatus] = useState("");
   const { id } = useParams();
 
-  useEffect(() => {
-    const fetchMatchData = async () => {
-      const response = await axios.get(`${url}/matches/${id}`);
-      setMatchData(response.data);
-      setStatus(response.data.status);
-      axios
-        .get(`${url}/teams/${response.data.homeTeam}`)
-        .then((response) => {
-          setHomeTeam(response.data);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+  const fetchMatchData = async () => {
+    const response = await axios.get(`${url}/matches/${id}`);
+    setMatchData(response.data);
+    setStatus(response.data.status);
+    axios
+      .get(`${url}/teams/${response.data.homeTeam}`)
+      .then((response) => {
+        setHomeTeam(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
 
-      axios
-        .get(`${url}/teams/${response.data.awayTeam}`)
-        .then((response) => {
-          setAwayTeam(response.data);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    };
+    axios
+      .get(`${url}/teams/${response.data.awayTeam}`)
+      .then((response) => {
+        setAwayTeam(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  useEffect(() => {
     fetchMatchData();
   }, [id]);
 
@@ -42,6 +44,7 @@ const EditMatch = () => {
   }
 
   const { date, homeGoals, awayGoals } = matchData;
+  const dateFormated = new Date(date);
   const handleStatusChange = (event) => {
     setStatus(event.target.value);
   };
@@ -124,7 +127,9 @@ const EditMatch = () => {
 
   return (
     <div>
-      <div>Date: {date}</div>
+      <div>Date: {dateFormated.toLocaleDateString()}</div>
+      <div>Hora: {convertToAmPm(dateFormated)}</div>
+
       <div className="border border-primary">
         <label>Home Team:</label>
         <div>{homeTeam.name}</div>
@@ -134,6 +139,7 @@ const EditMatch = () => {
           matchId={matchData._id}
           teamId={homeTeam._id}
           teamName={homeTeam.name}
+          fetchMatchData={fetchMatchData}
         />
       </div>
 
@@ -146,6 +152,7 @@ const EditMatch = () => {
           matchId={matchData._id}
           teamId={awayTeam._id}
           teamName={awayTeam.name}
+          fetchMatchData={fetchMatchData}
         />
       </div>
 

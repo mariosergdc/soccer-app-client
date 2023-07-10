@@ -14,6 +14,7 @@ import EditPlayer from "./EditPlayer";
 import CreatePlayer from "./CreatePlayer";
 import Login from "./Login";
 import PrivateRoute from "./PrivateRoute";
+import Calendario from "../pages/Calendario";
 
 const Router = () => {
   return (
@@ -21,6 +22,7 @@ const Router = () => {
       <NavBar />
       <Routes>
         <Route path="/login" element={<Login />}></Route>
+        <Route path="/calendar" element={<Calendario />}></Route>
         <Route path="/" element={<StandingsPage />}></Route>
         {/*lista de teams se la pasa a standins table */}
         <Route
