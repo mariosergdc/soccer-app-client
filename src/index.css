@@ -75,3 +75,18 @@ button:focus-visible {
   margin: 1rem;
   padding: 1rem;
 }
+
+@media (max-width: 768px) {
+  table {
+    font-size: 14px;
+  }
+  th {
+    display: none;
+  }
+  td:before {
+    content: attr(data-label);
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+  }
+}

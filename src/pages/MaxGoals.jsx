@@ -32,7 +32,7 @@ const MaxGoals = () => {
             <tr key={player._id}>
               <td>{player.name}</td>
               <td>{player.statistics.goals}</td>
-              <td>{player.team.name}</td>
+              <td data-label="Equipo">{player.team.name}</td>
             </tr>
           ))}
         </tbody>

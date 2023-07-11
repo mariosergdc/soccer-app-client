@@ -21,7 +21,7 @@ function StandingsTable({ teams }) {
   });
 
   return (
-    <Table striped bordered hover>
+    <Table striped bordered hover responsive>
       <thead>
         <tr>
           <th>Posición</th>
@@ -43,14 +43,14 @@ function StandingsTable({ teams }) {
             <td>
               <Link to={`/teams/${team._id}`}>{team.name}</Link>
             </td>
-            <td>{team.performance.gamesPlayed}</td>
-            <td>{team.performance.wins}</td>
-            <td>{team.performance.ties}</td>
-            <td>{team.performance.losses}</td>
-            <td>{team.performance.goalsScored}</td>
-            <td>{team.performance.goalsConceded}</td>
-            <td>{team.performance.goalDifference}</td>
-            <td>{team.performance.points}</td>
+            <td data-label="PJ">{team.performance.gamesPlayed}</td>
+            <td data-label="PG">{team.performance.wins}</td>
+            <td data-label="PE">{team.performance.ties}</td>
+            <td data-label="PP">{team.performance.losses}</td>
+            <td data-label="GF">{team.performance.goalsScored}</td>
+            <td data-label="GC">{team.performance.goalsConceded}</td>
+            <td data-label="DG">{team.performance.goalDifference}</td>
+            <td data-label="P">{team.performance.points}</td>
           </tr>
         ))}
       </tbody>
