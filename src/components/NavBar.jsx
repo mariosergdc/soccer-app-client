@@ -42,6 +42,13 @@ function NavBar() {
           >
             Calendario
           </Nav.Link>
+          <Nav.Link
+            as={Link}
+            to="/maxgoals"
+            className={location.pathname === "/maxgoals" ? "active" : ""}
+          >
+            Maximos Goleadores
+          </Nav.Link>
           {loggedIn && (
             <>
               <Nav.Link

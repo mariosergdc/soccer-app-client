@@ -15,6 +15,7 @@ import CreatePlayer from "./CreatePlayer";
 import Login from "./Login";
 import PrivateRoute from "./PrivateRoute";
 import Calendario from "../pages/Calendario";
+import MaxGoals from "../pages/MaxGoals";
 
 const Router = () => {
   return (
@@ -23,6 +24,7 @@ const Router = () => {
       <Routes>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/calendar" element={<Calendario />}></Route>
+        <Route path="/maxgoals" element={<MaxGoals />}></Route>
         <Route path="/" element={<StandingsPage />}></Route>
         {/*lista de teams se la pasa a standins table */}
         <Route
