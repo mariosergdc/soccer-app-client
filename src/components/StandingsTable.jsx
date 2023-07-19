@@ -37,22 +37,25 @@ function StandingsTable({ teams }) {
         </tr>
       </thead>
       <tbody>
-        {teams.map((team, index) => (
-          <tr key={team._id}>
-            <td>{index + 1}</td>
-            <td>
-              <Link to={`/teams/${team._id}`}>{team.name}</Link>
-            </td>
-            <td data-label="PJ">{team.performance.gamesPlayed}</td>
-            <td data-label="PG">{team.performance.wins}</td>
-            <td data-label="PE">{team.performance.ties}</td>
-            <td data-label="PP">{team.performance.losses}</td>
-            <td data-label="GF">{team.performance.goalsScored}</td>
-            <td data-label="GC">{team.performance.goalsConceded}</td>
-            <td data-label="DG">{team.performance.goalDifference}</td>
-            <td data-label="P">{team.performance.points}</td>
-          </tr>
-        ))}
+        {teams.map(
+          (team, index) =>
+            index < 6 && (
+              <tr key={team._id}>
+                <td>{index + 1}</td>
+                <td>
+                  <Link to={`/teams/${team._id}`}>{team.name}</Link>
+                </td>
+                <td data-label="PJ">{team.performance.gamesPlayed}</td>
+                <td data-label="PG">{team.performance.wins}</td>
+                <td data-label="PE">{team.performance.ties}</td>
+                <td data-label="PP">{team.performance.losses}</td>
+                <td data-label="GF">{team.performance.goalsScored}</td>
+                <td data-label="GC">{team.performance.goalsConceded}</td>
+                <td data-label="DG">{team.performance.goalDifference}</td>
+                <td data-label="P">{team.performance.points}</td>
+              </tr>
+            )
+        )}
       </tbody>
     </Table>
   );

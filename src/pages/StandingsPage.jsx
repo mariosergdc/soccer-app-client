@@ -19,7 +19,7 @@ function StandingsPage() {
 
   return (
     <div>
-      <h1>Tabla de posiciones</h1>
+      <h1>Tabla de Posiciones</h1>
       {teams.length !== 0 && <StandingsTable teams={teams} />}
     </div>
   );
